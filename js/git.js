@@ -39,12 +39,13 @@ $('.pagination').pagination({
         $('#fetchedData').html(html);
     }
 });
+
 // функция для пагинации
 function myData(data) {
     var fetchedData;
     data.forEach(function (item) {
 
-        fetchedData += '<tr><td>' + item.filename + '</td><td>' + item.language + '</td><td>' + item.url + '</td></tr>';
+        fetchedData += '<tr><td>' + item.filename + '</td><td>' + item.language + '</td><td><a href="' + item.url + '">' + "url" + '</a></td></tr>';
     });
     return fetchedData;
 }

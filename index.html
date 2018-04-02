@@ -10,22 +10,24 @@
 </head>
 <body>
 
-    <h2>Gist</h2>
-    <div id="content" class="content">
-        <table id="example" class="table table-striped table-bordered" style="width:100%">
-            <thead>
-            <tr>
-                <th>filename</th>
-                <th>language</th>
-                <th>raw_url</th>
-            </tr>
-            </thead>
-            <tbody id="fetchedData">
-            </tbody>
-        </table>
-    </div>
-    <hr/>
-    <div class="pagination"></div>
+<h2 class="nav navbar-brand">
+    <a href="#">Gist</a>
+</h2>
+<div id="content" class="content">
+    <table id="example" class="table table-striped table-hover table-bordered">
+        <thead>
+        <tr class="warning">
+            <th>filename</th>
+            <th>language</th>
+            <th>raw_url</th>
+        </tr>
+        </thead>
+        <tbody id="fetchedData">
+        </tbody>
+    </table>
+</div>
+<hr/>
+<div class="pagination"></div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="js/pagination.min.js"></script>
