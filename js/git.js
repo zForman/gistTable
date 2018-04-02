@@ -14,26 +14,16 @@ parsedData.forEach(function (item) {
     var filesData = item.files; //сюда помещаем свойство с именем ключа files
 
     var propertyName = Object.keys(filesData); //возращаем массив из переданого объекта
-    if (propertyName.length == 1) {
-        var fields = filesData[propertyName];
+
+    propertyName.forEach(function (item) { //перебираем массив
+        var fields = filesData[item];
         var newObject = {
             filename: fields.filename,
             language: fields.language,
             url: fields.raw_url
         };
         arrayData.push(newObject);
-    }
-    else {
-        propertyName.forEach(function (item) {
-            var fields = filesData[item];
-            var newObject = {
-                filename: fields.filename,
-                language: fields.language,
-                url: fields.raw_url
-            };
-            arrayData.push(newObject);
-        })
-    }
+    })
 });
 
 $('.pagination').pagination({
