@@ -6,21 +6,21 @@ if (xhr.status != 200) {
 } else {
     var gotData = (xhr.responseText);
 }
-
+// создаем массив, для распарсенного объекта
 var arrayData = [];
 //парсим объект и помещаем в массив arrayData
 var parsedData = JSON.parse(gotData);
 parsedData.forEach(function (item) {
-    var filesData = item.files;
+    var filesData = item.files; //сюда помещаем свойство с именем ключа files
 
-    var propertyName = Object.keys(filesData);
+    var propertyName = Object.keys(filesData); //возращаем массив из переданого объекта
     if (propertyName.length == 1) {
         var fields = filesData[propertyName];
         var newObject = {
             filename: fields.filename,
             language: fields.language,
             url: fields.raw_url
-        }
+        };
         arrayData.push(newObject);
     }
     else {
@@ -30,7 +30,7 @@ parsedData.forEach(function (item) {
                 filename: fields.filename,
                 language: fields.language,
                 url: fields.raw_url
-            }
+            };
             arrayData.push(newObject);
         })
     }
@@ -45,7 +45,7 @@ $('.pagination').pagination({
         var html = myData(data);
         $('#fetchedData').html(html);
     }
-})
+});
 
 function myData(data) {
     var fetchedData;
@@ -54,4 +54,4 @@ function myData(data) {
         fetchedData += '<tr><td>' + item.filename + '</td><td>' + item.language + '</td><td>' + item.url + '</td></tr>';
     });
     return fetchedData;
-};
+}
