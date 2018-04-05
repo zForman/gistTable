@@ -4,48 +4,47 @@ xhr.open('GET', 'https://api.github.com/gists/public', false);
 xhr.send();
 if (xhr.status != 200) {
 } else {
-    var gotData = (xhr.responseText);
+    var gotJsonData = (xhr.responseText);
 }
-// создаем массив, для распарсенного объекта, в который поместим необходимые значения через arrayData.push
-var arrayData = [];
-//парсим объект и помещаем в массив arrayData
-var parsedData = JSON.parse(gotData);
-parsedData.forEach(function (item) {
-    var filesData = item.files; //сюда помещаем свойство с именем ключа files, т.е. имя файла
 
-    var propertyName = Object.keys(filesData); //возращаем массив из переданого объекта
 
-    propertyName.forEach(function (item) { //перебираем массив
-        var fields = filesData[item]; // для свойств filename, language, url
-        // в newObject с помощью метода push помещаем значение свойств
-        var newObject = {
-            filename: fields.filename,
-            language: fields.language,
-            url: fields.raw_url
-        };
-        arrayData.push(newObject);
-    })
-});
-//плагин пагинации,
-$('.pagination').pagination({
-    dataSource: arrayData,
-    pageSize: 5,
-    showPageNumbers: false,
-    showNavigator: true,
+//Массив для добавления свойств методом push
+var myData = [];
 
-    //вызываем колбэк функцию, для отрисовки в index.html
-    callback: function (data) {
-        var html = myData(data);
-        $('#fetchedData').html(html);
+//Парсим данные
+gotJsonData = JSON.parse(gotJsonData);
+
+//получаем неободимые свойства и значения: filename, language, language для сортировки
+gotJsonData.forEach(function (key) {
+        var fileName = key.files;
+        for (var key in fileName) {
+            var newObj = {
+                filename: fileName[key]['filename'],
+                language: fileName[key]['language'],
+                raw_url: fileName[key]['raw_url']
+            };
+            myData.push(newObj);
+        }
     }
-});
+);
+//В sortedArray помещаем отсортированный массив
+var sortedArray = myData.sort(compare);
 
-// функция для пагинации
-function myData(data) {
-    var fetchedData;
-    data.forEach(function (item) {
+//Перебераем отсортированый массив и выводим в HTML
+for (var sortedKey in sortedArray) {
+    var allData;
+    allData += '<tr><td>' + sortedArray[sortedKey].filename + '</td>'
+        + '<td>' + sortedArray[sortedKey].language + '</td>' +
+        '<td><a href="' + sortedArray[sortedKey].raw_url + '">' + "url" + '</a></td></tr>';
+}
+$('#fetchedData').append(allData);
 
-        fetchedData += '<tr><td>' + item.filename + '</td><td>' + item.language + '</td><td><a href="' + item.url + '">' + "url" + '</a></td></tr>';
-    });
-    return fetchedData;
+
+//Функция для сортировки по filename
+function compare(a, b) {
+    if (a.filename < b.filename)
+        return -1;
+    if (a.filename > b.filename)
+        return 1;
+    return 0;
 }
