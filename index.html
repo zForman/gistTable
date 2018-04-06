@@ -9,7 +9,15 @@
 
 </head>
 <body>
+<form>
 
+    <div class="form-group" style="width: 30%">
+        <label for="myInput">Поиск по названию файла</label>
+        <input type="text" onkeyup="filterTable()" class="form-control" id="myInput"
+               placeholder="Начните вводить имя файла...">
+    </div>
+
+</form>
 <h2 class="nav navbar-brand">
     <a href="#">Gist</a>
 </h2>
@@ -24,7 +32,6 @@
         </thead>
         <tbody id="fetchedData">
         <tr>
-
         </tr>
         </tbody>
     </table>
@@ -34,6 +41,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="js/pagination.min.js"></script>
+<!--<script src="js/filterInput.js"></script>-->
 <script src="js/git.js"></script>
 </body>
 </html>
