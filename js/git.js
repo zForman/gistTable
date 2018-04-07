@@ -44,19 +44,19 @@ function displayData(obj) {
 gettingRelevantData(gotJsonData);
 
 //Сортируем данные и помещаем в sortedArray
-var sortedArray = myData.sort(compare);
+let sortedArray = myData.sort(compare);
 
 //Передаем для function displayData отсортированные данные для вывода в html
 displayData(sortedArray);
 
-
 function filterTable() {
+
 //Инициализируем переменные
-    var input, filter, table, tr, td, i;
+    let input, filter, table, tr, td, i;
     //Значение, введеное в input
     input = document.getElementById("myInput");
+    filter = input.value;
     // console.log(filter = input.value);
-    console.log(filter = input.value);
     //Обращение к таблице
     table = document.getElementById('fetchedData');
     //Обращение к столбцам
@@ -64,16 +64,15 @@ function filterTable() {
 
     //Просмотр всех строк таблицы
     for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName('td')[0];
+        td = tr[i].getElementsByTagName('td')[2];
         if (td) {
             if (td.innerHTML.indexOf(filter) > -1) {
                 tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
             }
-        } else {
-            tr[i].style.display = "none";
         }
     }
-
 }
 
 //Функция для сортировки по filename
@@ -84,5 +83,6 @@ function compare(a, b) {
         return 1;
     return 0;
 }
+
 
 
