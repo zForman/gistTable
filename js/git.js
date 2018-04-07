@@ -64,7 +64,7 @@ function filterTable() {
 
     //Просмотр всех строк таблицы
     for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName('td')[2];
+        td = tr[i].getElementsByTagName('td')[0];
         if (td) {
             if (td.innerHTML.indexOf(filter) > -1) {
                 tr[i].style.display = "";
@@ -83,6 +83,3 @@ function compare(a, b) {
         return 1;
     return 0;
 }
-
-
-
