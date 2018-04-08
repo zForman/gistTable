@@ -10,17 +10,16 @@
 </head>
 <body>
 <form>
-
+    <h2 class="nav navbar-brand">
+        <a href="#">Gist</a>
+    </h2>
     <div class="form-group" style="width: 30%">
-        <label for="myInput">Поиск по названию файла</label>
         <input type="text" onkeyup="filterTable()" class="form-control" id="myInput"
-               placeholder="Начните вводить имя файла...">
+               placeholder="Начните вводить название файла...">
     </div>
 
 </form>
-<h2 class="nav navbar-brand">
-    <a href="#">Gist</a>
-</h2>
+
 <div id="content" class="content" style="height: 250px;">
     <table id="example" class="table table-striped table-hover table-bordered">
         <thead>
