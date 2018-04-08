@@ -9,7 +9,7 @@ if (xhr.status != 200) {
 
 
 //Массив для добавления свойств методом push
-var myData = [];
+let myData = [];
 
 //Парсим данные
 gotJsonData = JSON.parse(gotJsonData);
@@ -17,9 +17,9 @@ gotJsonData = JSON.parse(gotJsonData);
 //получаем неободимые свойства и значения: filename, language, language для сортировки
 function gettingRelevantData(data) {
     data.forEach(function (key) {
-            var fileName = key.files;
+            let fileName = key.files;
             for (key in fileName) {
-                var newObj = {
+                let newObj = {
                     filename: fileName[key]['filename'],
                     language: fileName[key]['language'],
                     raw_url: fileName[key]['raw_url']
@@ -32,13 +32,13 @@ function gettingRelevantData(data) {
 
 //Перебераем отсортированый массив и выводим в HTML
 function displayData(obj) {
-    for (var sortedKey in obj) {
+    for (let sortedKey in obj) {
         var allData;
         allData += '<tr><td>' + obj[sortedKey].filename + '</td>'
             + '<td>' + obj[sortedKey].language + '</td>' +
             '<td><a href="' + obj[sortedKey].raw_url + '">' + "url" + '</a></td></tr>';
     }
-    $('#fetchedData').append(allData);
+    $('#fetchedData').append(allData.toLowerCase());
 }
 
 gettingRelevantData(gotJsonData);
@@ -83,3 +83,5 @@ function compare(a, b) {
         return 1;
     return 0;
 }
+
+// Pagination
