@@ -12,7 +12,7 @@ if (xhr.status != 200) {
 let myData = [];
 
 //Парсим данные
-gotJsonData = JSON.parse(gotJsonData);
+gotJsonData = JSON.parse(gotJsonData.toLowerCase());
 
 //получаем неободимые свойства и значения: filename, language, language для сортировки
 function gettingRelevantData(data) {
@@ -38,12 +38,13 @@ function displayData(obj) {
             + '<td>' + obj[sortedKey].language + '</td>' +
             '<td><a href="' + obj[sortedKey].raw_url + '">' + "url" + '</a></td></tr>';
     }
-    $('#fetchedData').append(allData.toLowerCase());
+    $('#fetchedData').append(allData);
 }
 
 gettingRelevantData(gotJsonData);
 
 //Сортируем данные и помещаем в sortedArray
+
 let sortedArray = myData.sort(compare);
 
 //Передаем для function displayData отсортированные данные для вывода в html
